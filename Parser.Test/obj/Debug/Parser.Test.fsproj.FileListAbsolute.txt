@@ -18,3 +18,26 @@ C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser.Test\bin\Debug
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser.Test\bin\Debug\FParsec.xml
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser.Test\bin\Debug\FParsecCS.xml
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser.Test\bin\Debug\Parser.Test.dll.config
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.Test.dll.config
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.Test.XML
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.Test.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.Test.pdb
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FParsec.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FParsecCS.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FSharp.Core.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FsUnit.NUnit.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\NHamcrest.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\nunit.framework.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FParsec.xml
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FParsecCS.xml
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FSharp.Core.xml
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FsUnit.NUnit.pdb
+D:\Repos\TdsParser\Parser.Test\bin\Debug\FsUnit.NUnit.xml
+D:\Repos\TdsParser\Parser.Test\bin\Debug\NHamcrest.pdb
+D:\Repos\TdsParser\Parser.Test\bin\Debug\nunit.framework.xml
+D:\Repos\TdsParser\Parser.Test\obj\Debug\Parser.Test.fsprojResolveAssemblyReference.cache
+D:\Repos\TdsParser\Parser.Test\obj\Debug\Parser.Test.dll
+D:\Repos\TdsParser\Parser.Test\obj\Debug\Parser.Test.pdb
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.dll
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.pdb
+D:\Repos\TdsParser\Parser.Test\bin\Debug\Parser.xml

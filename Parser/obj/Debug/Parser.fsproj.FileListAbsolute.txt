@@ -9,3 +9,14 @@ C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser\bin\Debug\FPar
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser\bin\Debug\FSharp.Core.xml
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser\obj\Debug\Parser.dll
 C:\Users\Alex\Documents\Visual Studio 2015\Projects\Parser\Parser\obj\Debug\Parser.pdb
+D:\Repos\TdsParser\Parser\bin\Debug\Parser.XML
+D:\Repos\TdsParser\Parser\bin\Debug\Parser.dll
+D:\Repos\TdsParser\Parser\bin\Debug\Parser.pdb
+D:\Repos\TdsParser\Parser\bin\Debug\FParsec.dll
+D:\Repos\TdsParser\Parser\bin\Debug\FParsecCS.dll
+D:\Repos\TdsParser\Parser\bin\Debug\FSharp.Core.dll
+D:\Repos\TdsParser\Parser\bin\Debug\FParsec.xml
+D:\Repos\TdsParser\Parser\bin\Debug\FParsecCS.xml
+D:\Repos\TdsParser\Parser\bin\Debug\FSharp.Core.xml
+D:\Repos\TdsParser\Parser\obj\Debug\Parser.dll
+D:\Repos\TdsParser\Parser\obj\Debug\Parser.pdb

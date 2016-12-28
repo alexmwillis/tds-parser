@@ -3,10 +3,11 @@
     open System
     open FParsec
 
-    type Field = {
-        value : string
-    }
- 
+    type Field(field: Guid, name: string, key: string) =
+        member this.Field = field
+        member this.Name = name
+        member this.Key = string
+     
     type Item = {
         id : Guid
         name : string
@@ -16,14 +17,19 @@
     type UserState = unit
     type Parser<'t> = Parser<'t, UserState>
 
-    let pguid: Parser<_> =
+    let parseGuid: Parser<_> =
         let guidRegex = @"^[{(]?[0-9A-F]{8}[-]?([0-9A-F]{4}[-]?){3}[0-9A-F]{12}[)}]?$"
         regex guidRegex |>> fun a -> Guid.Parse a
-    let pKeyValue key pvalue = pstring key >>. pchar ':' >>. pvalue
-    let pKeyValueString key = pKeyValue key (restOfLine true)
-    let pKeyValueInt key = pKeyValue key pint16 .>> newline
-    let pKeyValueGuid key = pKeyValue key pguid .>> newline
-//let pField = pstring "-f-" >>. newline >>. pKeyValueString "key" .>>. pKeyValueString "value" |>> fun (key, value) -> (key, { value = value })
+    let parseKeyValue key pvalue = pstring key >>. pstring ": " >>. pvalue
+    let parseKeyValueString key = parseKeyValue key (restOfLine true)
+    let parseKeyValueInt key = parseKeyValue key pint16 .>> newline
+    let parseKeyValueGuid key = parseKeyValue key parseGuid
+    let parseField: Parser<_> = 
+        pstring "----field----" >>. newline >>. 
+        parseKeyValueGuid "field" .>>. 
+        parseKeyValueString "name" .>>. 
+        parseKeyValueString "key" |>> fun ((field, name), key) -> (key, new Field(field, name, key))
+           
 //let pItem = pstring "----item----" 
 //    >>. newline 
 //   .>>. pKeyValueInt "version" 
