@@ -51,9 +51,10 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Parsers.fs" />
     <None Include="Script.fsx" />
     <Content Include="packages.config" />
+    <Compile Include="Parsers.fs" />
+    <Compile Include="TdsProject.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">

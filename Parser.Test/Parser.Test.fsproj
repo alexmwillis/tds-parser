@@ -55,6 +55,7 @@
     <Compile Include="ParsersTests.fs" />
     <Content Include="packages.config" />
     <Content Include="app.config" />
+    <None Include="test-item.item" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
@@ -85,8 +86,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Parser\Parser.fsproj">
       <Name>Parser</Name>
       <Project>{b404152f-fc53-4dea-8118-8b2e2adcf986}</Project>

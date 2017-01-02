@@ -11,60 +11,60 @@
     type FieldName = FieldName of string
             
     type Version = {
-        version: Int32;
-        language: Language;
-        revision: Guid;
+        version: Int32
+        language: Language
+        revision: Guid
     }
 
     let toVersion = fun language version revision -> 
         { 
-            language = Language language; 
-            version = version; 
+            language = Language language
+            version = version 
             revision = revision 
         }
 
     type Field = {
-        fieldId: Guid; 
-        name: string;
-        key: string;
-        value: string;
+        fieldId: Guid
+        name: string
+        key: string
+        value: string
         version: option<Version>
     }
 
     let toField version = fun field name key content -> 
         { 
-            fieldId = field; 
-            name = name; 
-            key = key; 
-            value = content; 
+            fieldId = field
+            name = name
+            key = key
+            value = content
             version = version 
         }
 
     type Item = {
-        version: Int32;
-        id: Guid;
-        database: string; 
-        path: string; 
-        parent: Guid; 
-        name: string; 
-        master: Guid; 
-        template: Guid; 
-        templatekey: string;
-        fields: List<Field>;
+        version: Int32
+        id: Guid
+        database: string
+        path: string
+        parent: Guid
+        name: string
+        master: Guid
+        template: Guid
+        templatekey: string
+        fields: List<Field>
     }
 
     let toItem = fun version id database path parent name master template templatekey sharedFields versionedFields ->
         {
-            version = version;
-            id = id;
-            database = database;
-            path = path;
-            parent = parent;
-            name = name;
-            master = master;
-            template = template;
-            templatekey = templatekey;
-            fields = List.concat [sharedFields; (List.collect (fun v -> v) versionedFields)];
+            version = version
+            id = id
+            database = database
+            path = path
+            parent = parent
+            name = name
+            master = master
+            template = template
+            templatekey = templatekey
+            fields = List.concat [sharedFields; (List.collect (fun v -> v) versionedFields)]
         }     
 
     type UserState = unit
@@ -116,7 +116,7 @@
                 (parseKeyValueString "name")
                 (parseKeyValueGuid "master")
                 (parseKeyValueGuid "template")
-                (parseKeyValueString "templateKey")
-                (many parseSharedField)
-                (many parseVersionedFields)
+                (parseKeyValueString "templatekey" .>> newline)
+                (many1 parseSharedField)
+                (many1 parseVersionedFields)
                 toItem

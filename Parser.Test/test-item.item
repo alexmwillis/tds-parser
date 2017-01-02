@@ -1,0 +1,44 @@
+﻿----item----
+version: 1
+id: {DFF1470E-984C-4B28-8DD2-4B2DCFB428BB}
+database: master
+path: /test/path
+parent: {0F40C120-6716-4754-9751-D7483A1E6E5F}
+name: Item
+master: {00000000-0000-0000-0000-000000000000}
+template: {46C5A3B1-DA6F-4B14-94F3-3CD1D278E615}
+templatekey: TemplateKey
+
+----field----
+field: {A57BACA0-FD8C-43A4-80BE-A034DBD6233A}
+name: HostName
+key: hostname
+content-length: 8
+
+test.com
+----field----
+field: {81D4A193-0127-43CF-9D14-24C4D1E82E52}
+name: VirtualFolder
+key: virtualfolder
+content-length: 3
+
+/mc
+----version----
+language: en
+version: 1
+revision: 48a821bc-7001-4e1d-b50f-eb5f7c3414c5
+
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20161207T145810Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 14
+
+sitecore\admin

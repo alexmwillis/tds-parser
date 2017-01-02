@@ -1,6 +1,7 @@
 ﻿module Parsers.Test
     
     open System
+    open System.IO
     open NUnit.Framework
     open FsUnit
     open Parsers
@@ -156,3 +157,58 @@ This section contains all web site content.
             let actualFields = testParser parseVersionedFields stringToParse 
 
             actualFields |> should equal expectedFields
+
+        [<TestCase("test-item.item")>] 
+        member t.``can parse item`` (filePath) =
+
+            let stringToParse = File.ReadAllText(Path.Combine(__SOURCE_DIRECTORY__, filePath))
+
+            let expectedVersion = Some { 
+                language = Language "en"
+                version = 1
+                revision = Guid "48a821bc-7001-4e1d-b50f-eb5f7c3414c5"
+            } 
+            let expectedItem = { 
+                version = 1;
+                id = Guid "{DFF1470E-984C-4B28-8DD2-4B2DCFB428BB}"; 
+                database = "master";
+                path = "/test/path";
+                parent = Guid "{0F40C120-6716-4754-9751-D7483A1E6E5F}";
+                name = "Item";
+                master = Guid "{00000000-0000-0000-0000-000000000000}";
+                template = Guid "{46C5A3B1-DA6F-4B14-94F3-3CD1D278E615}";
+                templatekey = "TemplateKey";
+                fields = 
+                    [{
+                        fieldId = Guid "{A57BACA0-FD8C-43A4-80BE-A034DBD6233A}"
+                        name = "HostName"
+                        key = "hostname"
+                        value = "test.com"
+                        version = None
+                    };
+                    {
+                        fieldId = Guid "{81D4A193-0127-43CF-9D14-24C4D1E82E52}"
+                        name = "VirtualFolder"
+                        key = "virtualfolder"
+                        value = "/mc"
+                        version = None
+                    };
+                    {
+                        fieldId = Guid "{25BED78C-4957-4165-998A-CA1B52F67497}"
+                        name = "__Created"
+                        key = "__created"
+                        value = "20161207T145810Z"
+                        version = expectedVersion
+                    };
+                    {
+                        fieldId = Guid "{BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}"
+                        name = "__Updated by"
+                        key = "__updated by"
+                        value = "sitecore\\admin"
+                        version = expectedVersion
+                    }
+                ]
+            }
+            let actualItem = testParser parseItem stringToParse 
+
+            actualItem |> should equal expectedItem
