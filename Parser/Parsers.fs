@@ -1,85 +1,50 @@
-﻿module Parsers
+﻿module TdsParser.Parsers
 
     open System
     open FParsec
-    
-    let pipe11 p1 p2 p3 p4 p5 p6 p7 p8 p9 p10 p11 f =
-        pipe3 (tuple4 p1 p2 p3 p4) (tuple4 p5 p6 p7 p8) (tuple3 p9 p10 p11)
-            (fun (x1, x2, x3, x4) (x5, x6, x7, x8) (x9, x10, x11) -> f x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11)
-
-    type Language = Language of string
-    type FieldName = FieldName of string
-            
-    type Version = {
-        version: Int32
-        language: Language
-        revision: Guid
-    }
-
-    let toVersion = fun language version revision -> 
+    open TdsParser.FParsecExtensions
+    open TdsParser.Types
+        
+    let toVersion language version revision =
         { 
-            language = Language language
-            version = version 
-            revision = revision 
+            Language = Language language
+            Version = version 
+            Revision = revision 
         }
 
-    type Field = {
-        fieldId: Guid
-        name: string
-        key: string
-        value: string
-        version: option<Version>
-    }
-
-    let toField version = fun field name key content -> 
+    let toField version field name key content =
         { 
-            fieldId = field
-            name = name
-            key = key
-            value = content
-            version = version 
+            FieldId = field
+            Name = name
+            Key = key
+            Value = content
+            Version = version 
         }
 
-    type Item = {
-        version: Int32
-        id: Guid
-        database: string
-        path: string
-        parent: Guid
-        name: string
-        master: Guid
-        template: Guid
-        templatekey: string
-        fields: List<Field>
-    }
-
-    let toItem = fun version id database path parent name master template templatekey sharedFields versionedFields ->
+    let toItem version id database path parent name master template templatekey sharedFields versionedFields =
         {
-            version = version
-            id = id
-            database = database
-            path = path
-            parent = parent
-            name = name
-            master = master
-            template = template
-            templatekey = templatekey
-            fields = List.concat [sharedFields; (List.collect (fun v -> v) versionedFields)]
+            Version = version
+            Id = id
+            Database = database
+            Path = path
+            Parent = parent
+            Name = name
+            Master = master
+            Template = template
+            Templatekey = templatekey
+            Fields = List.concat [sharedFields; (List.collect (fun v -> v) versionedFields)]
         }     
 
-    type UserState = unit
-    type Parser<'t> = Parser<'t, UserState>
-
-    let parseGuid: Parser<_> =
+    let parseGuid =
             let guidRegex = @"^[{(]?[0-9A-Fa-f]{8}[-]?([0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}[)}]?"
-            regex guidRegex |>> fun a -> Guid.Parse a
+            regex guidRegex |>> Guid.Parse
     
     let parseKeyValue key pvalue = pstring key >>. pstring ": " >>. pvalue
     let parseKeyValueString key = parseKeyValue key (restOfLine true)
     let parseKeyValueInt key = parseKeyValue key pint32 .>> newline
     let parseKeyValueGuid key = parseKeyValue key parseGuid .>> newline
     
-    let parseFieldContent: Parser<_> = 
+    let parseFieldContent = 
             (parseKeyValueInt "content-length" .>> newline) >>= fun contentLength -> (anyString contentLength .>> newline)
     
     let parseField version = 
@@ -103,9 +68,9 @@
             .>> newline 
 
     let parseVersionedFields =
-        parseVersion >>= fun version -> many (parseField (Some version))
+        parseVersion >>= (Some >> parseField >> many)
 
-    let parseItem = 
+    let parseItem: Parser<_> = 
             pstring "----item----" >>. newline  >>.
             pipe11
                 (parseKeyValueInt "version")
@@ -120,3 +85,8 @@
                 (many1 parseSharedField)
                 (many1 parseVersionedFields)
                 toItem
+
+    let runParser p str =
+        match run p str with
+        | Success(result, _, _)   -> result
+        | Failure(errorMsg, _, _) -> failwith errorMsg

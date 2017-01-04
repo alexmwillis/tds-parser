@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Parser", "Parser\Parser.fsproj", "{B404152F-FC53-4DEA-8118-8B2E2ADCF986}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TdsParser", "Parser\TdsParser.fsproj", "{B404152F-FC53-4DEA-8118-8B2E2ADCF986}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Parser.Test", "Parser.Test\Parser.Test.fsproj", "{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TdsParser.Test", "Parser.Test\TdsParser.Test.fsproj", "{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{B8AD924F-041C-4094-A3FA-70490624F8CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
