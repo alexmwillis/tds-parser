@@ -1,4 +1,5 @@
-﻿using TdsParser;
+﻿using System.Linq;
+using TdsParser;
 
 namespace ConsoleApplication1
 {
@@ -6,7 +7,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var project = Project.getProject("gfs");
+            var project = Project.getProject("D:\\Repos\\PriorityPass.MainSite\\src\\Sitecore\\CollinsonGroup.Master\\sitecore");
         }
     }
 }

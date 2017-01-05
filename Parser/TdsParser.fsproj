@@ -51,6 +51,13 @@
     </Otherwise>
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
+  <Import Project="..\packages\FSharpLint.0.2.8\build\FSharpLint.targets" Condition="Exists('..\packages\FSharpLint.0.2.8\build\FSharpLint.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\FSharpLint.0.2.8\build\FSharpLint.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FSharpLint.0.2.8\build\FSharpLint.targets'))" />
+  </Target>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
@@ -76,13 +83,13 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
   </ItemGroup>
-  <Import Project="..\packages\FSharpLint.0.2.8\build\FSharpLint.targets" Condition="Exists('..\packages\FSharpLint.0.2.8\build\FSharpLint.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\FSharpLint.0.2.8\build\FSharpLint.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\FSharpLint.0.2.8\build\FSharpLint.targets'))" />
-  </Target>
+  <ItemGroup>
+    <ProjectReference Include="..\TdsItems\TdsItems.csproj">
+      <Name>TdsItems</Name>
+      <Project>{85719ef6-6108-416b-9457-037937882cb3}</Project>
+      <Private>True</Private>
+    </ProjectReference>
+  </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
