@@ -165,15 +165,16 @@ This section contains all web site content.
                 Revision = Guid "48a821bc-7001-4e1d-b50f-eb5f7c3414c5"
             } 
             let expectedItem = { 
-                Version = 1;
-                Id = Guid "{DFF1470E-984C-4B28-8DD2-4B2DCFB428BB}"; 
-                Database = "master";
-                Path = "/test/path";
-                Parent = Guid "{0F40C120-6716-4754-9751-D7483A1E6E5F}";
-                Name = "Item";
-                Master = Guid "{00000000-0000-0000-0000-000000000000}";
-                Template = Guid "{46C5A3B1-DA6F-4B14-94F3-3CD1D278E615}";
-                Templatekey = "TemplateKey";
+                Version = 1
+                Id = Guid "{DFF1470E-984C-4B28-8DD2-4B2DCFB428BB}"
+                Database = "master"
+                Path = "/test/path"
+                Parent = Guid "{0F40C120-6716-4754-9751-D7483A1E6E5F}"
+                Name = "Item"
+                Master = Guid "{00000000-0000-0000-0000-000000000000}"
+                Template = Guid "{46C5A3B1-DA6F-4B14-94F3-3CD1D278E615}"
+                Templatekey = "TemplateKey"
+                Children = Seq.empty
                 Fields = 
                     [{
                         FieldId = Guid "{A57BACA0-FD8C-43A4-80BE-A034DBD6233A}"
@@ -205,6 +206,6 @@ This section contains all web site content.
                     }
                 ]
             }
-            let actualItem = runParser parseItem stringToParse 
+            let actualItem = runParser (parseItem Seq.empty) stringToParse 
 
             actualItem |> should equal expectedItem

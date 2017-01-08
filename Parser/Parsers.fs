@@ -21,7 +21,7 @@
             Version = version 
         }
 
-    let toItem version id database path parent name master template templatekey sharedFields versionedFields =
+    let toItem children version id database path parent name master template templatekey sharedFields versionedFields =
         {
             Version = version
             Id = id
@@ -32,6 +32,7 @@
             Master = master
             Template = template
             Templatekey = templatekey
+            Children = children
             Fields = List.concat [sharedFields; (List.collect (fun v -> v) versionedFields)]
         }     
 
@@ -70,7 +71,7 @@
     let parseVersionedFields =
         parseVersion >>= (Some >> parseField >> many)
 
-    let parseItem: Parser<_> = 
+    let parseItem children: Parser<_> = 
             pstring "----item----" >>. newline  >>.
             pipe11
                 (parseKeyValueInt "version")
@@ -84,7 +85,7 @@
                 (parseKeyValueString "templatekey" .>> newline)
                 (many1 parseSharedField)
                 (many1 parseVersionedFields)
-                toItem
+                (toItem children)
 
     let runParser p str =
         match run p str with

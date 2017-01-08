@@ -4,29 +4,29 @@
     open TdsParser.Types
     open TdsParser.Parsers
     open TdsItems
-        
-    let getItem (file:FileInfo) = 
-        let content = File.ReadAllText(file.FullName)
-        runParser parseItem content
     
-    let getChildren (file:FileInfo) = 
+    let getChildFiles (file:FileInfo) = 
         let pathOfChildren = Path.Combine(file.DirectoryName, Path.GetFileNameWithoutExtension(file.FullName))
         let directory = new DirectoryInfo(pathOfChildren)
         if directory.Exists
             then directory.GetFiles("*.item")
             else [||]     
-            
-    let rec getProjectTree file = 
-        let children = getChildren file
-        if children.Length > 0 
-            then Branch(getItem file, children |> Seq.map getProjectTree)
-            else Leaf(getItem file)
+    
+    let parseItem (file:FileInfo) children = 
+        let content = File.ReadAllText(file.FullName)
+        runParser (parseItem children) content
+    
+    let rec getItem file = 
+        let childFiles = getChildFiles file
+        if childFiles.Length > 0 
+            then parseItem file (childFiles |> Seq.map getItem) 
+            else parseItem file Seq.empty
 
-    let rec flattenTree tree = 
-        match tree with 
-        | Root root -> Seq.collect flattenTree root
-        | Branch (item, tree) -> Seq.append (Seq.collect flattenTree tree) (Seq.singleton item)
-        | Leaf leaf -> Seq.singleton leaf
+    let rec flattenItem item = 
+        Seq.append (Seq.singleton item) (Seq.collect flattenItem item.Children) 
+
+    let rec flattenItems items = 
+        Seq.append items (Seq.collect flattenItem items) 
 
     let getProject (projectPath:string) =
         let fullProjectPath = 
@@ -34,8 +34,17 @@
                 then Path.Combine(__SOURCE_DIRECTORY__, projectPath) 
                 else projectPath
 
-        let children = getChildren (new FileInfo(fullProjectPath))
+        let children = getChildFiles (new FileInfo(fullProjectPath))
         if children.Length > 0
-            then Root(children |> Seq.map getProjectTree)
+            then children 
+                |> Seq.map getItem 
+                |> flattenItems 
+                |> Seq.groupBy (fun i -> i.Id)
+                |> Map.ofSeq
+                |> Map.map (fun id items -> 
+                    match (List.ofSeq items) with
+                    | x::xs when xs.IsEmpty -> x
+                    | x::xs -> failwith (sprintf "duplicate item '%s'" x.Path)
+                    | [] -> failwith "empty list")
             else failwith "project is empty"
     
