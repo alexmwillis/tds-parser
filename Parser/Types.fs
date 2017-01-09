@@ -34,9 +34,4 @@
         Children: seq<Item>
     }     
 
-//    type ProjectTree = 
-//        | Root of ProjectTree seq        
-//        | Branch of Item * ProjectTree seq
-//        | Leaf of Item    
-
     type Parser<'t> = Parser<'t, unit>

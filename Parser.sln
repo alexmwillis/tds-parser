@@ -7,8 +7,6 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TdsParser", "Parser\TdsPars
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "TdsParser.Test", "Parser.Test\TdsParser.Test.fsproj", "{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{B8AD924F-041C-4094-A3FA-70490624F8CF}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TdsItems", "TdsItems\TdsItems.csproj", "{85719EF6-6108-416B-9457-037937882CB3}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF5AFA2A-17E0-40C0-BBD8-2094F3333B8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8AD924F-041C-4094-A3FA-70490624F8CF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{85719EF6-6108-416B-9457-037937882CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{85719EF6-6108-416B-9457-037937882CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85719EF6-6108-416B-9457-037937882CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU

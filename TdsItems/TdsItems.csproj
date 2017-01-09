@@ -41,8 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SitecoreField.cs" />
-    <Compile Include="SitecoreItem.cs" />
+    <Compile Include="SolutionProperties.cs" />
+    <Compile Include="TdsProject.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Parser\TdsParser.fsproj">
+      <Project>{b404152f-fc53-4dea-8118-8b2e2adcf986}</Project>
+      <Name>TdsParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
