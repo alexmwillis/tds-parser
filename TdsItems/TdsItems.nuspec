@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>TdsParser</id>
+    <version>1.0.0.0</version>
+    <developmentDependency>true</developmentDependency>
+    <title>TdsParser</title>
+    <authors>dotnet</authors>
+    <owners></owners>
+    <description>
+      TDS project file parser.
+    </description>
+    <summary>
+      TDS project file parser.
+    </summary>
+    <language>en-UK</language>
+    <projectUrl>https://nuget.org/packages/TdsParser</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <copyright>Copyright  2017</copyright>
+    <releaseNotes />
+    <dependencies>
+      <group targetFramework=".NETFramework4.5.2">
+        <dependency id="FParsec" version="1.0.2" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\Parser.dll" target="lib\Parser.dll" />
+    <file src="bin\Release\TdsItems.dll" target="lib\TdsItems.dll" />
+  </files>
+</package>
